@@ -1,4 +1,3 @@
-
 ![Escudo ESPE](assets/image.png)
 
 # Universidad de las Fuerzas Armadas "ESPE"
@@ -35,6 +34,11 @@ SecurityShop
   * Base de datos de pedidos
   * Base de datos de usuarios
   * API Gateway 
+  * Tokens de sesión (JWT)
+  * Carrito de compras
+  * Certificados SSL/TLS
+  * Sistema de notificaciones
+  * Secrets y claves de cifrado
 
 
 
@@ -65,3 +69,8 @@ SecurityShop
 | **Base de datos de pedidos** | Infraestructura | Podrían exponerse o alterarse pedidos, o impedirse su correcta gestión. | - Acceso no autorizado a los pedidos<br>- Modificación de pedidos<br>- Eliminación de registros de pedidos | Implementar control de acceso basado en roles y cifrado de la información almacenada. |
 | **Base de datos de usuarios** | Infraestructura | Podrían exponerse o alterarse datos de usuarios, afectando su autenticación y gestión. | - Acceso no autorizado a datos personales<br>- Modificación de cuentas<br>- Eliminación de información de usuarios | Aplicar control de acceso, cifrado de datos sensibles y autenticación segura. |
 | **API Gateway** | Software | Podrían manipularse las solicitudes o interrumpirse el acceso a varios microservicios. | - Interceptación de solicitudes<br>- Envío de solicitudes maliciosas<br>- Ataque de denegación de servicio (DoS) | Implementar autenticación, autorización y un sistema de rate limiting para controlar las solicitudes. |
+| **Tokens de sesión (JWT)** | Información sensible | Un atacante podría suplantar la identidad de un usuario legítimo y acceder a sus datos o realizar compras fraudulentas. | - Robo de tokens<br>- Reutilización de tokens expirados<br>- Falsificación de tokens (token forgery) | Uso de tokens de corta duración, rotación de secretos y validación estricta de firma y expiración. |
+| **Carrito de compras** | Información | Se podrían modificar cantidades o precios en el carrito, generando pedidos fraudulentos o pérdidas económicas. | - Manipulación del carrito desde el cliente<br>- Ataques de condición de carrera<br>- Inyección de productos no autorizados | Validación total en el servidor y recalculo de precios desde la base de datos. |
+| **Certificados SSL/TLS** | Infraestructura | La comunicación dejaría de estar cifrada, permitiendo interceptar datos sensibles de los usuarios. | - Expiración del certificado<br>- Uso de certificados no válidos o autofirmados<br>- Ataques de tipo Man-in-the-Middle | Renovación automática de certificados, uso de autoridades certificadoras confiables y HSTS. |
+| **Sistema de notificaciones** | Servicio | Los usuarios podrían no recibir alertas importantes (pedidos, cambios de contraseña) o recibir notificaciones falsas. | - Envío masivo de notificaciones spam<br>- Suplantación de notificaciones<br>- Interrupción del servicio de mensajería | Autenticación de origen, rate limiting y cifrado de los canales de notificación. |
+| **Secrets y claves de cifrado** | Información sensible | La exposición de claves permitiría descifrar datos, falsificar tokens o acceder a sistemas internos. | - Filtración de variables de entorno<br>- Almacenamiento inseguro de secretos<br>- Uso de claves débiles o reutilizadas | Gestión centralizada de secretos (Vault), rotación periódica y principio de mínimo privilegio. |
